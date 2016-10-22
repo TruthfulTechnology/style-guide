@@ -1,14 +1,93 @@
 Python Code Style Guide
 =======================
 
-Linters
--------
+Baseline:
 
-- Use PyCodeStyle (**TODO**: document preferred non-default configuration)
+- I try to abide by strong recommendations in `PEP 8 <https://www.python.org/dev/peps/pep-0008/>`_
+- I use `PyCodeStyle <https://github.com/PyCQA/pycodestyle>`_ for some automated style checks (**TODO**: document preferred non-default configuration)
+
+
+Variables
+---------
+
+Sometimes you need to name things.
+
+
+Naming
+~~~~~~
+
+I tend to use long variable names: whole words and often multiple words.
+
+I will sometimes use a single letter variable name for a looping variable, but usually I'll try to use a longer name even if it means I need to split the line up for readability.
+
+
+Naming Indexes
+~~~~~~~~~~~~~~
+
+Whenever I see something like ``some_variable[0]`` or ``some_variable[2]``, I treat this as an indication that I should be relying on iterable unpacking.
+
+Instead of this:
+
+.. code-block:: python
+
+    do_something(things[0], things[1])
+
+I'd rather see this:
+
+.. code-block:: python
+
+    first, second = things
+    do_something(first, second)
+
+Instead of this:
+
+.. code-block:: python
+
+    do_something(things[0], things[1:-1], things[-1])
+
+I'd rather see this:
+
+.. code-block:: python
+
+    head, *middle, tail = things
+    do_something(head, middle, tail)
+
+
+Unused Variables
+~~~~~~~~~~~~~~~~
+
+I try to avoid making variables I'll never use.
+
+There are two times I sometimes find I need to make a variable even though I'll never use it: iterable unpacking and a list comprehension over a ``range``:
+
+.. code-block:: python
+
+    head, *unused_middle, tail = things
+    do_something(head, tail)
+    matrix = [[0] * 3 for unused_index in range(3)]
+
+I tend to prefer using ``_`` for these variables which are never used:
+
+.. code-block:: python
+
+    head, *_, tail = things
+    do_something(head, tail)
+    matrix = [[0] * 3 for _ in range(3)]
+
+
+Compacting Assignments
+~~~~~~~~~~~~~~~~~~~~~~
+
+I sometimes use iterable unpacking to compact multiple assignment statements onto one line.  I only do this when the assignments are very tightly related:
+
+.. code-block:: python
+
+    word1, word2 = word1.upper(), word2.upper()
+    x, y, z = (a1 - a2), (b1 - b2), (c1 - c2)
 
 
 Defining Functions
-~~~~~~~~~~~~~~~~~~
+------------------
 
 Sometimes you need to write your own functions.
 
