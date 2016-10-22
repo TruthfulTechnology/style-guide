@@ -348,3 +348,21 @@ For a very short comprehension, I often find it acceptable to use just one line 
     sum_of_squares = sum(n**2 for n in numbers)
 
 I almost always use multiple lines when there's an conditional section or when the mapping or looping sections are not very short.
+
+
+Conditionals
+------------
+
+I do not use parenthesis around conditional expressions in ``if`` statements unless they wrap over multiple lines.
+
+
+Strings
+-------
+
+I use the ``format`` method for string formatting.  In Python 3.6, I may use f-strings.  I do not use ``%`` to format strings.
+
+When given the option between string concatenation and using ``format``, I will often use ``format`` unless the use case requires no string literals.
+
+If I am joining a list of values together, I prefer to use the ``join`` method instead.
+
+For string literals with line breaks in them, I often prefer to use a multi-line string combined with ``textwrap.dedent``.  I may occasionally use ``'\n'.join()`` instead.
