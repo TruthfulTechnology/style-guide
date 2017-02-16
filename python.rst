@@ -356,6 +356,175 @@ Conditionals
 I do not use parenthesis around conditional expressions in ``if`` statements unless they wrap over multiple lines.
 
 
+Inline If Statements
+~~~~~~~~~~~~~~~~~~~~
+
+Consider using inline ifs if assigning to or returning two things.
+
+Instead of this:
+
+.. code-block:: python
+
+    if name:
+        greeting = "Hello {}".format(name)
+    else:
+        greeting = "Hi"
+
+Consider using this:
+
+.. code-block:: python
+
+    greeting = "Hello {}".format(name) if name else "Hi"
+
+Also consider splitting inline ``if`` statements over multiple lines for improved readability:
+
+.. code-block:: python
+
+    greeting = (
+        "Hello {}".format(name)
+        if name
+        else"Hi"
+    )
+
+
+Truthiness
+~~~~~~~~~~
+
+Instead of checking emptiness through length or other means:
+
+.. code-block:: python
+
+    if len(results) == 0:
+        print("No results found.")
+
+    if len(failures) > 0:
+        print("There were failures during processing.")
+
+Rely on truthiness to check for emptiness:
+
+.. code-block:: python
+
+    if not results:
+        print("No results found.")
+
+    if failures:
+        print("There were failures during processing.")
+
+Do not rely on truthiness for checking zeroness or non-zeroness though.
+
+Instead of this:
+
+.. code-block:: python
+
+    if n % 2:
+        print("The given number is odd")
+
+    if not step_count:
+        print("No steps taken.")
+
+Do this:
+
+.. code-block:: python
+
+    if n % 2 == 1:
+        print("The given number is odd")
+
+    if step_count == 0:
+        print("No steps taken.")
+
+
+Conversion to bool
+~~~~~~~~~~~~~~~~~~
+
+If you ever see code that sets a variable to ``True`` or ``False`` based on a condition:
+
+.. code-block:: python
+
+    if results:
+        found_results = True
+    else:
+        found_results = False
+
+    if not failures:
+        success = True
+    else:
+        success = False
+
+Rely on truthiness by converting the condition to a ``bool`` instead, either explicitly for the truthy case or implicitly using ``not`` for the falsey case:
+
+.. code-block:: python
+
+    found_results = bool(results)
+
+    success = not failures
+
+Keep in mind that sometimes no conversion is necessary.
+
+The condition here is already a boolean value:
+
+.. code-block:: python
+
+    if n % 2 == 1:
+        is_odd = True
+    else:
+        is_odd = False
+
+So type-casting to a ``bool`` would be redundant.  Instead simply set the variable equal to the expression:
+
+.. code-block:: python
+
+    is_odd = (n % 2 == 1)
+
+
+Long if-elif chains
+~~~~~~~~~~~~~~~~~~~
+
+Python doesn't have switch statements.  Instead, you'll often see Python developers use an ``if`` statement with many ``elif`` statements.
+
+.. code-block:: python
+
+    if n == "zero":
+        numbers.append(0)
+    elif n == "one":
+        numbers.append(1)
+    elif n == "two":
+        numbers.append(2)
+    elif n == "three":
+        numbers.append(3)
+    elif n == "four":
+        numbers.append(4)
+    elif n == "five":
+        numbers.append(5)
+    elif n == "six":
+        numbers.append(6)
+    elif n == "seven":
+        numbers.append(7)
+    elif n == "eight":
+        numbers.append(8)
+    elif n == "nine":
+        numbers.append(9)
+    else:
+        numbers.append(' ')
+
+Instead of using many ``elif`` statements, consider using a dictionary.  This alternative is often (but not always) possible.
+
+.. code-block:: python
+
+    words_to_digits = {
+        'zero': 0,
+        'one': 1,
+        'two': 2,
+        'three': 3,
+        'four': 4,
+        'five': 5,
+        'six': 6,
+        'seven': 7,
+        'eight': 8,
+        'nine': 9,
+    }
+    numbers.append(translation.get(n, " "))
+
+
 Strings
 -------
 
