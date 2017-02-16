@@ -537,3 +537,11 @@ I usually prefer f-strings or the ``format`` method over string concatenation.
 If I am joining a list of values together, I use the ``join`` method instead.
 
 For string literals with line breaks in them, I often prefer to use a multi-line string combined with ``textwrap.dedent``.  I may occasionally use ``'\n'.join()`` instead.
+
+
+Regular Expressions
+-------------------
+
+Avoid using regular expressions if there's a simpler and equally accurate way of expressing your target search/transformation.
+
+Unless your regular expression is extremely simple, always use a multi-line string and ``VERBOSE`` mode when representing your regular expression.
