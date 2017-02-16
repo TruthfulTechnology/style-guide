@@ -528,10 +528,12 @@ Instead of using many ``elif`` statements, consider using a dictionary.  This al
 Strings
 -------
 
-I use the ``format`` method for string formatting.  In Python 3.6, I may use f-strings.  I do not use ``%`` to format strings.
+In Python 3.6, I use f-strings for combining multiple strings.
 
-When given the option between string concatenation and using ``format``, I will often use ``format`` unless the use case requires no string literals.
+In Python 2.7 and Python 3.5, I use the ``format`` method for string formatting.  I never use ``%`` to format strings.
 
-If I am joining a list of values together, I prefer to use the ``join`` method instead.
+I usually prefer f-strings or the ``format`` method over string concatenation.
+
+If I am joining a list of values together, I use the ``join`` method instead.
 
 For string literals with line breaks in them, I often prefer to use a multi-line string combined with ``textwrap.dedent``.  I may occasionally use ``'\n'.join()`` instead.
