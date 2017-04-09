@@ -4,7 +4,7 @@ Python Code Style Guide
 Baseline:
 
 - I try to abide by strong recommendations in `PEP 8 <https://www.python.org/dev/peps/pep-0008/>`_
-- I use `PyCodeStyle <https://github.com/PyCQA/pycodestyle>`_ for some automated style checks (**TODO**: document preferred non-default configuration)
+- I use `Flake8 <http://flake8.pycqa.org>`_ for some automated style checks
 
 
 Variables
@@ -545,3 +545,21 @@ Regular Expressions
 Avoid using regular expressions if there's a simpler and equally accurate way of expressing your target search/transformation.
 
 Unless your regular expression is extremely simple, always use a multi-line string and ``VERBOSE`` mode when representing your regular expression.
+
+
+Flake8 Customizations
+---------------------
+
+I install `flake8 <http://flake8.pycqa.org>`_, `pep8-naming <https://github.com/PyCQA/pep8-naming>`_, `flake8-import-order <https://github.com/PyCQA/flake8-import-order>`_, `flake8-bugbear <https://github.com/PyCQA/flake8-bugbear>`_, and `flake8-docstrings <https://github.com/PyCQA/flake8-docstrings>`_:
+
+.. code-block:: bash
+
+    $ pip install flake8 pep8-naming flake8-import-order flake8-bugbear flake8-docstrings
+
+I use this Flake8 configuration::
+
+    [flake8]
+    ignore =
+        N806,   # Variables can be CamelCase
+        D1      # Don't require docstrings
+    max-complexity = 10
