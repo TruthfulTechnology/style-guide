@@ -383,7 +383,7 @@ Also consider splitting inline ``if`` statements over multiple lines for improve
     greeting = (
         "Hello {}".format(name)
         if name
-        else"Hi"
+        else "Hi"
     )
 
 
