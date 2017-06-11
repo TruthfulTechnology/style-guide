@@ -96,7 +96,7 @@ Naming
 
 I use lowercase function names, with whole words separated by underscores.  I rarely shorten words or smash words together without a separating underscore.
 
-I typically prefer to name functions with a very (even if it means putting ``get_`` or ``find_`` in front of the function name.
+I typically prefer to name functions with a verb (even if it means putting ``get_`` or ``find_`` in front of the function name).
 
 
 Line Wrapping
